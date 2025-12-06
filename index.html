@@ -444,6 +444,13 @@
             const today = new Date();
             const diffTime = Math.abs(raceDate - today);
             document.getElementById('days-left').innerText = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+            const month = today.getMonth() + 1;
+            const date = today.getDate();
+            const weekDay = days[today.getDay()];
+            // mm/dd -> M/D
+            document.getElementById('today-date').innerText = `${weekDay} ${month}/${date}`;
         });
     </script>
 </body>
