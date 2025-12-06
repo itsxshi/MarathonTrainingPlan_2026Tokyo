@@ -112,7 +112,7 @@
                         <i class="fa-solid fa-quote-right"></i>
                     </div>
                 </div>
-
+                                
                 <!-- Today's Status -->
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg shadow-sm">
                     <div class="flex justify-between items-start">
@@ -244,6 +244,52 @@
         </nav>
 
     </div>
+
+    <div id="today-task"></div>
+<script>
+function showTodayTask() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2,'0');
+    const dd = String(today.getDate()).padStart(2,'0');
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    fetch('tasks.json')
+    .then(res => res.json())
+    .then(weeks => {
+        // 找到今天所在的周
+        const findWeek = weeks.find(week => {
+            return todayStr >= week.start && todayStr <= week.end;
+        });
+        if (!findWeek) {
+            document.getElementById('today-task').innerHTML = '<div class="bg-blue-50 p-4 rounded">今日无周任务</div>';
+            return;
+        }
+        // 找当天的任务
+        const todayTask = findWeek.days.find(day => day.date === todayStr);
+        if (!todayTask) {
+            document.getElementById('today-task').innerHTML = '<div class="bg-blue-50 p-4 rounded">今日无任务</div>';
+            return;
+        }
+        document.getElementById('today-task').innerHTML =
+    `<div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg shadow-sm">
+        <div class="flex justify-between items-start">
+            <div>
+                <h3 class="text-blue-900 font-bold text-lg">
+                    <i class="fa-solid fa-calendar-day mr-2"></i>
+                    今日任务 (${todayTask.weekday} ${mm}/${dd} | Week ${findWeek.week})
+                </h3>
+                <p class="text-blue-800 mt-1">${todayTask.title}</p>
+                <p class="text-xs text-blue-600 mt-2"><i class="fa-solid fa-stopwatch mr-1"></i>${todayTask.desc}</p>
+            </div>
+            <span class="bg-white text-blue-600 text-xs px-2 py-1 rounded border border-blue-200 font-bold">${todayTask.status}</span>
+        </div>
+     </div>`;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', showTodayTask);
+</script>
 
     <script type="module">
         import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -451,7 +497,48 @@
             const weekDay = days[today.getDay()];
             // mm/dd -> M/D
             document.getElementById('today-date').innerText = `${weekDay} ${month}/${date}`;
+            showTodayTask();
         });
+        function showTodayTask() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth()+1).padStart(2,'0');
+            const dd = String(today.getDate()).padStart(2,'0');
+            const todayStr = `${yyyy}-${mm}-${dd}`;
+            
+            fetch('tasks.json')
+            .then(res => res.json())
+            .then(tasks => {
+                const findWeek = weeks.find(week => {
+                    return todayStr >= week.start && todayStr <= week.end;
+                });
+                if (!findWeek) {
+                    document.getElementById('today-task').innerHTML = '<div class="bg-blue-50 p-4 rounded">今日无周任务</div>';
+                    return;
+                }
+                // 找当天的任务
+                const todayTask = findWeek.days.find(day => day.date === todayStr);
+                if (!todayTask) {
+                    document.getElementById('today-task').innerHTML = '<div class="bg-blue-50 p-4 rounded">今日无任务</div>';
+                    return;
+                }
+                document.getElementById('today-task').innerHTML =
+    `<div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg shadow-sm">
+        <div class="flex justify-between items-start">
+            <div>
+                <h3 class="text-blue-900 font-bold text-lg">
+                    <i class="fa-solid fa-calendar-day mr-2"></i>
+                    今日任务 (${todayTask.weekday} ${mm}/${dd} | Week ${findWeek.week})
+                </h3>
+                <p class="text-blue-800 mt-1">${todayTask.title}</p>
+                <p class="text-xs text-blue-600 mt-2"><i class="fa-solid fa-stopwatch mr-1"></i>${todayTask.desc}</p>
+            </div>
+            <span class="bg-white text-blue-600 text-xs px-2 py-1 rounded border border-blue-200 font-bold">${todayTask.status}</span>
+        </div>
+     </div>`;
+    });
+}
+        document.addEventListener('DOMContentLoaded', showTodayTask);
     </script>
 </body>
 </html>
