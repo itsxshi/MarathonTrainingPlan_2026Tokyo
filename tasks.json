@@ -1,0 +1,814 @@
+[
+  {
+    "week": 14,
+    "start": "2025-11-24",
+    "end": "2025-11-30",
+    "title": "Week 14: 缩减启动周",
+    "goal": "Low Volume",
+    "days": [
+      {
+        "date": "2025-11-24",
+        "weekday": "Mon",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Done"
+      },
+      {
+        "date": "2025-11-25",
+        "weekday": "Tue",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Done"
+      },
+      {
+        "date": "2025-11-26",
+        "weekday": "Wed",
+        "title": "3.5 mi Easy",
+        "desc": "跑步机首跑，体感轻松",
+        "status": "Done"
+      },
+      {
+        "date": "2025-11-27",
+        "weekday": "Thu",
+        "title": "10 mi Cycling",
+        "desc": "感恩节积极恢复",
+        "status": "Done"
+      },
+      {
+        "date": "2025-11-28",
+        "weekday": "Fri",
+        "title": "Rest",
+        "desc": "朋友聚餐",
+        "status": "Skipped"
+      },
+      {
+        "date": "2025-11-29",
+        "weekday": "Sat",
+        "title": "40min CF + 4 mi Run",
+        "desc": "先CF后跑，能量耗尽，10:30/mi 恢复跑",
+        "status": "Done"
+      },
+      {
+        "date": "2025-11-30",
+        "weekday": "Sun",
+        "title": "Rest",
+        "desc": "原定 LR，因状态不佳调整",
+        "status": "Skipped"
+      }
+    ]
+  },
+  {
+    "week": 13,
+    "start": "2025-12-01",
+    "end": "2025-12-07",
+    "title": "Week 13: 调整周 (Plan C)",
+    "goal": "Low Volume",
+    "days": [
+      {
+        "date": "2025-12-01",
+        "weekday": "Mon",
+        "title": "Rest",
+        "desc": "通宵后补觉，执行“睡眠即训练”策略",
+        "status": "Done"
+      },
+      {
+        "date": "2025-12-02",
+        "weekday": "Tue",
+        "title": "4 mi Run (Gym)",
+        "desc": "补跑，10:55/mi, HR 143",
+        "status": "Done"
+      },
+      {
+        "date": "2025-12-03",
+        "weekday": "Wed",
+        "title": "3x6' Tempo",
+        "desc": "Avg 8:41/mi，忙碌中高质量完成",
+        "status": "Done"
+      },
+      {
+        "date": "2025-12-04",
+        "weekday": "Thu",
+        "title": "Pilates + 4.01 mi Run",
+        "desc": "Run + Pilates，发现核心短板",
+        "status": "Done"
+      },
+      {
+        "date": "2025-12-05",
+        "weekday": "Fri",
+        "title": "CrossFit + Sauna",
+        "desc": "极寒日完成训练与顶级恢复",
+        "status": "Done"
+      },
+      {
+        "date": "2025-12-06",
+        "weekday": "Sat",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Done"
+      },
+      {
+        "date": "2025-12-07",
+        "weekday": "Sun",
+        "title": "12 mi Long Run",
+        "desc": "目标 8:45/mi，稳住有氧底子",
+        "status": "Done"
+      }
+    ]
+  },
+  {
+    "week": 12,
+    "start": "2025-12-08",
+    "end": "2025-12-14",
+    "title": "Week 12: 建立节奏",
+    "goal": "40 mi",
+    "days": [
+      {
+        "date": "2025-12-08",
+        "weekday": "Mon",
+        "title": "4 mi Recovery",
+        "desc": "[Shoes: Glycerin] 或 Yoga",
+        "status": "Done"
+      },
+      {
+        "date": "2025-12-09",
+        "weekday": "Tue",
+        "title": "20' Tempo @ 6:55/mi",
+        "desc": "[Shoes: SL2/Evo] 建立节奏的关键课",
+        "status": "To Do"
+      },
+      {
+        "date": "2025-12-10",
+        "weekday": "Wed",
+        "title": "5 mi Easy + Pilates + Sauna",
+        "desc": "[Shoes: Glycerin] 最佳恢复日组合",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-11",
+        "weekday": "Thu",
+        "title": "9 mi MLR",
+        "desc": "[Shoes: SL2/Evo] 中长距离耐力，跑完滚轴放松",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-12",
+        "weekday": "Fri",
+        "title": "CrossFit (AM) + Sauna",
+        "desc": "全身代谢日，可选晚上 3-4 mi Recovery",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-13",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin] 为明日蓄力",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-14",
+        "weekday": "Sun",
+        "title": "12-13 mi Long Run",
+        "desc": "[Shoes: SL2/Evo] 跑后 Yoga 放松",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 11,
+    "start": "2025-12-15",
+    "end": "2025-12-21",
+    "title": "Week 11: 准备上强度",
+    "goal": "42 mi",
+    "days": [
+      {
+        "date": "2025-12-15",
+        "weekday": "Mon",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-16",
+        "weekday": "Tue",
+        "title": "25' Tempo",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-17",
+        "weekday": "Wed",
+        "title": "5 mi Easy + Pilates + Sauna",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-18",
+        "weekday": "Thu",
+        "title": "10 mi MLR",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-19",
+        "weekday": "Fri",
+        "title": "CrossFit (AM) + Sauna",
+        "desc": "",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-20",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-21",
+        "weekday": "Sun",
+        "title": "13-14 mi Long Run",
+        "desc": "[Shoes: SL2/Evo] + Yoga",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 10,
+    "start": "2025-12-22",
+    "end": "2025-12-28",
+    "title": "Week 10: MP 介入",
+    "goal": "48 mi",
+    "days": [
+      {
+        "date": "2025-12-22",
+        "weekday": "Mon",
+        "title": "4 mi Recovery",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-23",
+        "weekday": "Tue",
+        "title": "3 x 8' Tempo",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-24",
+        "weekday": "Wed",
+        "title": "6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-25",
+        "weekday": "Thu",
+        "title": "40' MP @ 7:15/mi",
+        "desc": "[Shoes: SL2/Evo] 关键课！",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-26",
+        "weekday": "Fri",
+        "title": "CrossFit + Sauna",
+        "desc": "",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-27",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-28",
+        "weekday": "Sun",
+        "title": "14 mi Long Run",
+        "desc": "[Shoes: SL2/Evo] 最后4mi稳在7:45/mi",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 9,
+    "start": "2025-12-29",
+    "end": "2026-01-04",
+    "title": "Week 9: 间歇刺激",
+    "goal": "50 mi",
+    "days": [
+      {
+        "date": "2025-12-29",
+        "weekday": "Mon",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-30",
+        "weekday": "Tue",
+        "title": "5 x 1 mi Interval @ 6:30/mi",
+        "desc": "[Shoes: Alphafly]",
+        "status": "Planned"
+      },
+      {
+        "date": "2025-12-31",
+        "weekday": "Wed",
+        "title": "6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-01",
+        "weekday": "Thu",
+        "title": "10 mi MLR",
+        "desc": "[Shoes: SL2/Evo] 新年第一跑",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-02",
+        "weekday": "Fri",
+        "title": "CrossFit + Sauna",
+        "desc": "",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-03",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-04",
+        "weekday": "Sun",
+        "title": "15 mi Steady LR @ 8:20/mi",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 8,
+    "start": "2026-01-05",
+    "end": "2026-01-11",
+    "title": "Week 8: 第一次大考",
+    "goal": "55 mi",
+    "days": [
+      {
+        "date": "2026-01-05",
+        "weekday": "Mon",
+        "title": "5 mi Recovery",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-06",
+        "weekday": "Tue",
+        "title": "30' Tempo",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-07",
+        "weekday": "Wed",
+        "title": "6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-08",
+        "weekday": "Thu",
+        "title": "50' MP",
+        "desc": "[Shoes: SL2/Evo] 含热身冷身共 ~10 mi",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-09",
+        "weekday": "Fri",
+        "title": "CrossFit + Sauna",
+        "desc": "",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-10",
+        "weekday": "Sat",
+        "title": "4-5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-11",
+        "weekday": "Sun",
+        "title": "20 miles 模拟考",
+        "desc": "[Shoes: Alphafly] 前15mi慢, 后5mi快",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 7,
+    "start": "2026-01-12",
+    "end": "2026-01-18",
+    "title": "Week 7: 强度巅峰",
+    "goal": "56 mi",
+    "days": [
+      {
+        "date": "2026-01-12",
+        "weekday": "Mon",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-13",
+        "weekday": "Tue",
+        "title": "4 x 1.25 mi @ 6:40/mi",
+        "desc": "[Shoes: Alphafly]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-14",
+        "weekday": "Wed",
+        "title": "6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-15",
+        "weekday": "Thu",
+        "title": "60' MP",
+        "desc": "[Shoes: SL2/Evo] 最强MP课",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-16",
+        "weekday": "Fri",
+        "title": "4 mi Easy 或 CrossFit",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-17",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-18",
+        "weekday": "Sun",
+        "title": "18 mi Long Run",
+        "desc": "[Shoes: SL2/Evo] 中间8mi跑进8:00/mi",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 6,
+    "start": "2026-01-19",
+    "end": "2026-01-25",
+    "title": "Week 6: 终极巅峰",
+    "goal": "55 mi",
+    "days": [
+      {
+        "date": "2026-01-19",
+        "weekday": "Mon",
+        "title": "5 mi Recovery",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-20",
+        "weekday": "Tue",
+        "title": "35' Tempo",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-21",
+        "weekday": "Wed",
+        "title": "6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-22",
+        "weekday": "Thu",
+        "title": "65' MP",
+        "desc": "[Shoes: SL2/Evo] 约15km马配",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-23",
+        "weekday": "Fri",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-24",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-25",
+        "weekday": "Sun",
+        "title": "20 miles 渐进跑",
+        "desc": "[Shoes: Alphafly] 整个周期最重要的一课",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 5,
+    "start": "2026-01-26",
+    "end": "2026-02-01",
+    "title": "Week 5: 调整周",
+    "goal": "48 mi",
+    "days": [
+      {
+        "date": "2026-01-26",
+        "weekday": "Mon",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-27",
+        "weekday": "Tue",
+        "title": "6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-28",
+        "weekday": "Wed",
+        "title": "6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-29",
+        "weekday": "Thu",
+        "title": "45' MP",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-30",
+        "weekday": "Fri",
+        "title": "4 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-01-31",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-01",
+        "weekday": "Sun",
+        "title": "17-18 mi 轻松跑",
+        "desc": "[Shoes: SL2/Evo] 只堆量不求速",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 4,
+    "start": "2026-02-02",
+    "end": "2026-02-08",
+    "title": "Week 4: 最后一次长距离",
+    "goal": "48 mi",
+    "days": [
+      {
+        "date": "2026-02-02",
+        "weekday": "Mon",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-03",
+        "weekday": "Tue",
+        "title": "30' Tempo",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-04",
+        "weekday": "Wed",
+        "title": "6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-05",
+        "weekday": "Thu",
+        "title": "9 mi MLR",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-06",
+        "weekday": "Fri",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-07",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-08",
+        "weekday": "Sun",
+        "title": "18 mi Long Run",
+        "desc": "[Shoes: SL2/Evo] 最后一次 L",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 3,
+    "start": "2026-02-09",
+    "end": "2026-02-15",
+    "title": "Week 3: 开始减量 (Taper)",
+    "goal": "40 mi",
+    "days": [
+      {
+        "date": "2026-02-09",
+        "weekday": "Mon",
+        "title": "4 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-10",
+        "weekday": "Tue",
+        "title": "50' MP",
+        "desc": "[Shoes: Alphafly] 确认比赛鞋",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-11",
+        "weekday": "Wed",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-12",
+        "weekday": "Thu",
+        "title": "20' Tempo",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-13",
+        "weekday": "Fri",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-14",
+        "weekday": "Sat",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-15",
+        "weekday": "Sun",
+        "title": "14-15 mi 中长跑",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 2,
+    "start": "2026-02-16",
+    "end": "2026-02-22",
+    "title": "Week 2: 深度减量",
+    "goal": "30 mi",
+    "days": [
+      {
+        "date": "2026-02-16",
+        "weekday": "Mon",
+        "title": "4 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-17",
+        "weekday": "Tue",
+        "title": "15' Tempo",
+        "desc": "[Shoes: SL2/Evo]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-18",
+        "weekday": "Wed",
+        "title": "4 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-19",
+        "weekday": "Thu",
+        "title": "5 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-20",
+        "weekday": "Fri",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-21",
+        "weekday": "Sat",
+        "title": "5-6 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-22",
+        "weekday": "Sun",
+        "title": "10 mi Easy",
+        "desc": "[Shoes: SL2/Evo] 不要太快",
+        "status": "Planned"
+      }
+    ]
+  },
+  {
+    "week": 1,
+    "start": "2026-02-23",
+    "end": "2026-03-01",
+    "title": "Week 1: 比赛周 (Race Week)",
+    "goal": "Race!",
+    "days": [
+      {
+        "date": "2026-02-23",
+        "weekday": "Mon",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-24",
+        "weekday": "Tue",
+        "title": "3 mi 激活跑",
+        "desc": "[Shoes: Alphafly] 含1mi MP",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-25",
+        "weekday": "Wed",
+        "title": "Rest",
+        "desc": "休息",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-26",
+        "weekday": "Thu",
+        "title": "3 mi Easy",
+        "desc": "[Shoes: Glycerin]",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-27",
+        "weekday": "Fri",
+        "title": "Rest",
+        "desc": "休息 / 领物",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-02-28",
+        "weekday": "Sat",
+        "title": "2 mi Shakeout",
+        "desc": "[Shoes: SL2/Evo] 排酸/慢跑",
+        "status": "Planned"
+      },
+      {
+        "date": "2026-03-01",
+        "weekday": "Sun",
+        "title": "TOKYO MARATHON 2026",
+        "desc": "[Shoes: Alphafly] Target: 3:10",
+        "status": "Planned"
+      }
+    ]
+  }
+]
