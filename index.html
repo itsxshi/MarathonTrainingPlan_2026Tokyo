@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>东京马拉松 2026 指挥中心</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Generative AI SDK -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    
+    <style>
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            height: 300px; 
+            margin: 0 auto; 
+        }
+        .interactive-card { transition: all 0.2s ease-in-out; }
+        .interactive-card:active { transform: scale(0.98); }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        
+        /* Loading Spinner */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #3b82f6;
+            width: 20px;
+            height: 20px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="max-w-md mx-auto bg-white min-h-screen shadow-2xl flex flex-col relative">
+
+        <!-- Header -->
+        <header class="bg-slate-900 text-white p-6 rounded-b-3xl shadow-lg z-10">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h1 class="text-2xl font-bold">Tokyo 2026</h1>
+                    <p class="text-slate-400 text-sm">目标: Sub 3:10 (4:30/km)</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-3xl font-black text-blue-400" id="days-left">--</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-500">Days Left</div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between bg-slate-800 rounded-xl p-3 text-center">
+                <div class="w-1/3 border-r border-slate-700">
+                    <div class="text-xs text-slate-400">当前阶段</div>
+                    <div class="font-bold text-green-400">Week 12</div>
+                </div>
+                <div class="w-1/3 border-r border-slate-700">
+                    <div class="text-xs text-slate-400">体重</div>
+                    <div class="font-bold">61 kg</div>
+                </div>
+                <div class="w-1/3">
+                    <div class="text-xs text-slate-400">VDOT</div>
+                    <div class="font-bold text-blue-400">~48</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="flex-grow p-4 pb-24 overflow-y-auto custom-scroll" id="main-content">
+            
+            <!-- TAB: DASHBOARD -->
+            <div id="tab-dashboard" class="tab-content active space-y-6">
+                <!-- LLM Feature: Mental Coach -->
+                <div class="bg-gradient-to-r from-purple-500 to-indigo-600 p-4 rounded-xl shadow-lg text-white relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-brain mr-2"></i>✨ AI 赛前心理按摩</h3>
+                        <p class="text-xs text-purple-100 mb-3">焦虑了？累了？让 Gemini 教练给你打打气。</p>
+                        <div class="flex space-x-2">
+                             <button onclick="generateMentalAdvice('anxious')" class="bg-white text-purple-600 text-xs font-bold px-3 py-2 rounded-full shadow hover:bg-purple-50 transition">
+                                😓 我很焦虑
+                            </button>
+                            <button onclick="generateMentalAdvice('tired')" class="bg-white text-purple-600 text-xs font-bold px-3 py-2 rounded-full shadow hover:bg-purple-50 transition">
+                                😫 我很累
+                            </button>
+                        </div>
+                        <div id="mental-advice-result" class="hidden mt-3 text-sm bg-white/10 p-2 rounded border border-white/20 backdrop-blur-sm">
+                            <!-- AI Result -->
+                        </div>
+                    </div>
+                    <div class="absolute -right-4 -bottom-4 text-9xl text-white/10">
+                        <i class="fa-solid fa-quote-right"></i>
+                    </div>
+                </div>
+
+                <!-- Today's Status -->
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-blue-900 font-bold text-lg"><i class="fa-solid fa-calendar-day mr-2"></i>今日任务 (Tue 12/9)</h3>
+                            <p class="text-blue-800 mt-1">20' Tempo @ 6:55-7:00/mi</p>
+                            <p class="text-xs text-blue-600 mt-2"><i class="fa-solid fa-stopwatch mr-1"></i>建立节奏的关键课！</p>
+                        </div>
+                        <span class="bg-white text-blue-600 text-xs px-2 py-1 rounded border border-blue-200 font-bold">To Do</span>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="bg-white p-4 rounded-xl shadow border border-slate-100">
+                    <h3 class="font-bold text-slate-700 mb-4">跑量规划 (Miles/Week)</h3>
+                    <div class="chart-container">
+                        <canvas id="mileageChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: SCHEDULE -->
+            <div id="tab-schedule" class="tab-content space-y-4">
+                <div id="schedule-container" class="space-y-3">
+                    <!-- JS Injected -->
+                </div>
+            </div>
+
+            <!-- TAB: NUTRITION -->
+            <div id="tab-nutrition" class="tab-content space-y-6">
+                
+                <!-- LLM Feature: Recipe Generator -->
+                <div class="bg-gradient-to-r from-green-500 to-teal-600 p-4 rounded-xl shadow-lg text-white">
+                    <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-utensils mr-2"></i>✨ AI 剩菜变盛宴</h3>
+                    <p class="text-xs text-green-100 mb-3">输入你冰箱里有的食材，生成适合跑者的食谱。</p>
+                    
+                    <div class="flex space-x-2 mb-3">
+                        <input type="text" id="ingredients-input" placeholder="例如: 鸡蛋, 菠菜, 吐司..." class="flex-1 bg-white/20 border border-white/30 rounded-lg px-3 py-2 text-sm text-white placeholder-green-100 focus:outline-none focus:bg-white/30">
+                        <button onclick="generateRecipe()" class="bg-white text-teal-600 font-bold px-4 py-2 rounded-lg text-sm shadow hover:bg-green-50 transition">
+                            生成
+                        </button>
+                    </div>
+                    
+                    <div id="recipe-result" class="hidden mt-3 text-sm bg-black/20 p-3 rounded border border-white/10">
+                        <!-- AI Result -->
+                    </div>
+                </div>
+
+                <!-- Supplement Timeline -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+                    <div class="bg-green-50 p-3 border-b border-green-100">
+                        <h3 class="font-bold text-green-800"><i class="fa-solid fa-clock mr-2"></i>每日补剂时间轴</h3>
+                    </div>
+                    <div class="p-4 relative">
+                        <div class="absolute left-6 top-4 bottom-4 w-0.5 bg-slate-200"></div>
+                        <!-- Items (Simplified for brevity) -->
+                        <div class="relative pl-10 mb-6">
+                            <div class="absolute left-4 top-1 w-4 h-4 bg-yellow-400 rounded-full border-2 border-white shadow"></div>
+                            <h4 class="font-bold text-sm">Pre-Workout (30-60min)</h4>
+                            <p class="text-xs text-slate-500">Collagen (1勺) + 橙汁 | ☕️ 黑咖啡</p>
+                        </div>
+                        <div class="relative pl-10 mb-6">
+                            <div class="absolute left-4 top-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow"></div>
+                            <h4 class="font-bold text-sm">Post-Workout (30min)</h4>
+                            <p class="text-xs text-slate-500">蛋白粉 + 香蕉 🍌</p>
+                        </div>
+                        <div class="relative pl-10">
+                            <div class="absolute left-4 top-1 w-4 h-4 bg-purple-500 rounded-full border-2 border-white shadow"></div>
+                            <h4 class="font-bold text-sm">Bedtime (1hr)</h4>
+                            <p class="text-xs text-slate-500">酸樱桃 + 钙片 + 镁</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: GEAR -->
+            <div id="tab-gear" class="tab-content space-y-4">
+                 <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-blue-400 flex items-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mr-4">
+                        <i class="fa-solid fa-feather"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Brooks Glycerin Max</h4>
+                        <p class="text-xs text-slate-500">Easy / Recovery</p>
+                    </div>
+                </div>
+                 <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-green-500 flex items-center">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mr-4">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Adizero SL2 / Evo SL</h4>
+                        <p class="text-xs text-slate-500">Tempo / Steady</p>
+                    </div>
+                </div>
+                 <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-red-500 flex items-center">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 mr-4">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Nike Alphafly</h4>
+                        <p class="text-xs text-slate-500">Race Day</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Nav -->
+        <nav class="bg-white border-t border-slate-200 absolute bottom-0 w-full rounded-b-3xl">
+            <div class="flex justify-around py-3">
+                <button onclick="switchTab('dashboard')" class="nav-btn active flex flex-col items-center text-blue-600 w-1/4">
+                    <i class="fa-solid fa-chart-line text-xl mb-1"></i>
+                    <span class="text-[10px] font-bold">概览</span>
+                </button>
+                <button onclick="switchTab('schedule')" class="nav-btn flex flex-col items-center text-slate-400 w-1/4">
+                    <i class="fa-regular fa-calendar-check text-xl mb-1"></i>
+                    <span class="text-[10px] font-bold">计划</span>
+                </button>
+                <button onclick="switchTab('nutrition')" class="nav-btn flex flex-col items-center text-slate-400 w-1/4">
+                    <i class="fa-solid fa-apple-whole text-xl mb-1"></i>
+                    <span class="text-[10px] font-bold">营养</span>
+                </button>
+                <button onclick="switchTab('gear')" class="nav-btn flex flex-col items-center text-slate-400 w-1/4">
+                    <i class="fa-solid fa-shoe-prints text-xl mb-1"></i>
+                    <span class="text-[10px] font-bold">装备</span>
+                </button>
+            </div>
+        </nav>
+
+    </div>
+
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+
+        // *** IMPORTANT: Replace with your actual API Key ***
+        const apiKey = ""; 
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
+
+        // --- AI Feature 1: Mental Coach ---
+        window.generateMentalAdvice = async function(mood) {
+            const resultDiv = document.getElementById('mental-advice-result');
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = '<div class="loader"></div> 正在思考...';
+
+            let prompt = "";
+            if (mood === 'anxious') {
+                prompt = "我是一个正在备战东京马拉松的跑者，现在是第12周，目标3:10。我现在感到非常焦虑，害怕完不成目标，或者担心受伤。请以一个经验丰富、幽默且坚定的教练口吻，给我一段简短的鼓励（50字以内），让我放松下来。";
+            } else {
+                prompt = "我是一个正在备战东京马拉松的跑者，现在是第12周，目标3:10。我现在感到非常疲惫，不想动。请以一个理解但严格的教练口吻，给我一段简短的鼓励（50字以内），告诉我为什么休息或者坚持是有意义的。";
+            }
+
+            try {
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                const text = response.text();
+                resultDiv.innerText = text;
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerText = "教练正在休息，请稍后再试 (API Error)";
+            }
+        };
+
+        // --- AI Feature 2: Smart Recipe ---
+        window.generateRecipe = async function() {
+            const input = document.getElementById('ingredients-input').value;
+            const resultDiv = document.getElementById('recipe-result');
+            
+            if (!input) {
+                alert("请输入一些食材");
+                return;
+            }
+
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = '<div class="loader"></div> 大厨正在构思...';
+
+            const prompt = `我是一个马拉松跑者，需要高碳水或高蛋白的恢复餐。我手头有以下食材：${input}。请用这些食材（可以添加少量基础调料），为我生成一个超级简单的食谱。格式：【菜名】\n- 步骤1\n- 步骤2。请保持简短，适合懒人。`;
+
+            try {
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                const text = response.text();
+                resultDiv.innerText = text;
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerText = "大厨去跑步了，请稍后再试 (API Error)";
+            }
+        };
+
+        // --- Standard App Logic ---
+        const weeks = [
+            { id: 13, title: "Week 13: 调整周 (Plan C)", dates: "12/1 - 12/7", status: "past", volume: "Low", content: [
+                { day: "Mon", task: "Rest", type: "rest", done: true },
+                { day: "Tue", task: "4 mi Run", type: "easy", done: true },
+                { day: "Wed", task: "3x6' Tempo", type: "tempo", done: true },
+                { day: "Thu", task: "Run + Pilates", type: "easy", done: true },
+                { day: "Fri", task: "CF + Sauna", type: "crossfit", done: true },
+                { day: "Sat", task: "Rest", type: "rest", done: false },
+                { day: "Sun", task: "12 mi LR", type: "long", done: false }
+            ]},
+             { id: 12, title: "Week 12: 建立节奏", dates: "12/8 - 12/14", status: "current", volume: "40 mi", content: [
+                { day: "Mon", task: "4 mi Recovery", type: "easy", done: true },
+                { day: "Tue", task: "20' Tempo @ 6:55/mi", type: "tempo", done: false },
+                { day: "Wed", task: "5 mi Easy + Pilates + Sauna", type: "easy" },
+                { day: "Thu", task: "9 mi MLR", type: "steady" },
+                { day: "Fri", task: "CrossFit + Sauna", type: "crossfit" },
+                { day: "Sat", task: "5 mi Easy", type: "easy" },
+                { day: "Sun", task: "12-13 mi Long Run", type: "long" }
+            ]},
+            { id: 11, title: "Week 11: 准备上强度", dates: "12/15 - 12/21", status: "upcoming", volume: "42 mi", content: [
+                { day: "Mon", task: "5 mi Easy", type: "easy" },
+                { day: "Tue", task: "25' Tempo", type: "tempo" },
+                { day: "Thu", task: "10 mi MLR", type: "steady" },
+                { day: "Fri", task: "CrossFit", type: "crossfit" },
+                { day: "Sun", task: "13-14 mi LR", type: "long" }
+            ]},
+            { id: 10, title: "Week 10: MP 介入", dates: "12/22 - 12/28", status: "upcoming", volume: "48 mi", content: [
+                { day: "Thu", task: "40' MP @ 7:15/mi", type: "tempo" },
+                { day: "Sun", task: "14 mi LR (End fast)", type: "long" }
+            ]},
+             { id: 8, title: "Week 8: 第一次大考", dates: "1/5 - 1/11", status: "upcoming", volume: "55 mi", content: [
+                { day: "Thu", task: "50' MP", type: "tempo" },
+                { day: "Sun", task: "20 Miles 模拟考", type: "long" }
+            ]},
+            { id: 1, title: "Week 1: 比赛周", dates: "2/23 - 3/2", status: "upcoming", volume: "Taper", content: [
+                { day: "Sun", task: "TOKYO MARATHON 2026", type: "race" }
+            ]}
+        ];
+
+        function renderSchedule() {
+            const container = document.getElementById('schedule-container');
+            container.innerHTML = weeks.map(week => `
+                <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden interactive-card">
+                    <div class="p-4 cursor-pointer hover:bg-slate-50 transition-colors" onclick="toggleWeek(${week.id})">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-slate-800 ${week.status === 'current' ? 'text-blue-600' : ''}">
+                                    ${week.title}
+                                    ${week.status === 'current' ? '<span class="ml-2 bg-blue-100 text-blue-600 text-[10px] px-2 py-0.5 rounded-full">Current</span>' : ''}
+                                </h4>
+                                <p class="text-xs text-slate-400 mt-1">${week.dates} • Goal: ${week.volume}</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-slate-300 text-sm" id="icon-${week.id}"></i>
+                        </div>
+                    </div>
+                    <div id="week-${week.id}" class="hidden bg-slate-50 border-t border-slate-100 p-3 space-y-2">
+                        ${week.content.map(day => `
+                            <div class="flex items-center text-sm">
+                                <span class="w-8 font-bold text-slate-400 text-xs">${day.day}</span>
+                                <div class="flex-1 bg-white p-2 rounded border border-slate-100 flex justify-between items-center">
+                                    <span class="${getDayColor(day.type)}">${day.task}</span>
+                                    ${day.done ? '<i class="fa-solid fa-check-circle text-green-500"></i>' : '<i class="fa-regular fa-circle text-slate-300"></i>'}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            // Auto open current week
+            toggleWeek(12);
+        }
+
+        function getDayColor(type) {
+            const map = {
+                rest: 'text-slate-400',
+                easy: 'text-blue-600',
+                tempo: 'text-green-600 font-bold',
+                long: 'text-purple-600 font-bold',
+                crossfit: 'text-orange-600',
+                race: 'text-red-600 font-black',
+                steady: 'text-teal-600'
+            };
+            return map[type] || 'text-slate-600';
+        }
+
+        window.toggleWeek = function(id) {
+            const el = document.getElementById(`week-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            if (el && icon) {
+                if (el.classList.contains('hidden')) {
+                    el.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    el.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        }
+
+        window.switchTab = function(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('text-blue-600', 'active');
+                el.classList.add('text-slate-400');
+            });
+            event.currentTarget.classList.remove('text-slate-400');
+            event.currentTarget.classList.add('text-blue-600', 'active');
+        };
+
+        function initChart() {
+            const ctx = document.getElementById('mileageChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['W14', 'W13', 'W12', 'W11', 'W10', 'W9', 'W8', 'W7', 'W6', 'W5', 'W4', 'W3', 'W2', 'Race'],
+                    datasets: [{
+                        label: '周跑量 (Miles)',
+                        data: [22, 25, 40, 42, 48, 50, 55, 56, 55, 48, 48, 40, 30, 26],
+                        backgroundColor: (ctx) => {
+                            const idx = ctx.dataIndex;
+                            if (idx === 2) return '#3b82f6'; // Current (W12) Blue
+                            if (idx === 6 || idx === 8) return '#ef4444'; // Peak Weeks Red
+                            return '#cbd5e1'; // Others Gray
+                        },
+                        borderRadius: 4
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSchedule();
+            initChart();
+            const raceDate = new Date('2026-03-01');
+            const today = new Date();
+            const diffTime = Math.abs(raceDate - today);
+            document.getElementById('days-left').innerText = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        });
+    </script>
+</body>
+</html>
